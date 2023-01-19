@@ -1,0 +1,353 @@
+{
+    "characterInfo": {
+        "name": "Shadow of Veil",
+        "class": "Rogue (Scout)",
+        "level": "4",
+        "race": "Tabaxi",
+        "background": "Urban Bounty Hunter",
+        "playerName": "Mitchell",
+        "alignment": "Chaotic Neutral",
+        "experiencePoints": "0"
+    },
+    "abilityScores": [
+        {
+            "name": "Strength",
+            "score": 8,
+            "proficiency": false
+        },
+        {
+            "name": "Dexterity",
+            "score": 16,
+            "proficiency": true
+        },
+        {
+            "name": "Constitution",
+            "score": 15,
+            "proficiency": false
+        },
+        {
+            "name": "Intelligence",
+            "score": 12,
+            "proficiency": true
+        },
+        {
+            "name": "Wisdom",
+            "score": 10,
+            "proficiency": false
+        },
+        {
+            "name": "Charisma",
+            "score": 14,
+            "proficiency": false
+        }
+    ],
+    "inspiration": 1,
+    "proficiencyBonus": 2,
+    "skills": [
+        {
+            "name": "Acrobatics",
+            "proficiency": true,
+            "expertise": true
+        },
+        {
+            "name": "Animal Handling",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Arcana",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Athletics",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Deception",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "History",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Insight",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Intimidation",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Investigation",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Medicine",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Nature",
+            "proficiency": true,
+            "expertise": true
+        },
+        {
+            "name": "Perception",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Performance",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Persuasion",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Religion",
+            "proficiency": false,
+            "expertise": false
+        },
+        {
+            "name": "Sleight of Hand",
+            "proficiency": true,
+            "expertise": false
+        },
+        {
+            "name": "Stealth",
+            "proficiency": true,
+            "expertise": true
+        },
+        {
+            "name": "Survival",
+            "proficiency": true,
+            "expertise": true
+        }
+    ],
+    "armor": "Studded Leather",
+    "shield": false,
+    "speed": 40,
+    "maximumHitpoints": 34,
+    "currentHitpoints": 34,
+    "temporaryHitpoints": 0,
+    "hitDiceTotal": "4d8",
+    "hitDice": "4d8",
+    "deathSaveSuccesses": [
+        false,
+        false,
+        false
+    ],
+    "deathSaveFailures": [
+        false,
+        false,
+        false
+    ],
+    "currency": {
+        "copper": 0,
+        "silver": 0,
+        "electrum": 0,
+        "gold": 115,
+        "platinum": 0
+    },
+    "equipment": [
+        {
+            "name": "Shortsword",
+            "amount": 1
+        },
+        {
+            "name": "Shortbow",
+            "amount": 1
+        },
+        {
+            "name": "Arrows",
+            "amount": 20
+        },
+        {
+            "name": "Burglar's pack",
+            "amount": 1
+        },
+        {
+            "name": "Dagger",
+            "amount": 2
+        },
+        {
+            "name": "Thieves' Tools",
+            "amount": 1
+        },
+        {
+            "name": "Tooth (Marauder)",
+            "amount": 1
+        },
+        {
+            "name": "Bone Spike (Marauder)",
+            "amount": 1
+        },
+        {
+            "name": "Map of Estabelle",
+            "amount": 1
+        },
+        {
+            "name": "Potion belt",
+            "amount": 1
+        },
+        {
+            "name": "Potion of Healing",
+            "amount": 1
+        },
+        {
+            "name": "Potion of Venom",
+            "amount": 1
+        },
+        {
+            "name": "Studded leather armour",
+            "amount": 1
+        },
+        {
+            "name": "Grappling hook",
+            "amount": 1
+        },
+        {
+            "name": "Purple cloak",
+            "amount": 1
+        },
+        {
+            "name": "Robe of Many Useful Items",
+            "amount": 1
+        },
+        {
+            "name": "Rod of Immovable Force",
+            "amount": 1
+        },
+        {
+            "name": "Scroll of Spider Climb",
+            "amount": 1
+        },
+        {
+            "name": "Dashyq Wedding Band",
+            "amount": 1
+        },
+        {
+            "name": "Rations (1 day)",
+            "amount": 13
+        }
+    ],
+    "personalityTraits": "",
+    "ideals": "Despite being exiled from your clan, you still follow their ideals; never harming an innocent or people not deemed unlawful or evil.",
+    "bonds": "",
+    "flaws": "Aquaphobia: You are afraid of large bodies of water, this lead you to be very careful around them.\n\nZoomies: Out of combat you sometimes become hyperactive and might lose sight of the task at hand.",
+    "attacks": [
+        {
+            "name": "Shortsword",
+            "damage": "1d6",
+            "damageType": "Piercing",
+            "finesse": true
+        },
+        {
+            "name": "Dagger",
+            "damage": "1d4",
+            "damageType": "Piercing",
+            "finesse": true
+        },
+        {
+            "name": "Shortbow",
+            "damage": "1d6",
+            "damageType": "Piercing",
+            "finesse": true
+        },
+        {
+            "name": "Glass Dagger (+1 atk/+1 dmg if fhp)",
+            "damage": "1d4",
+            "damageType": "Piercing",
+            "finesse": true
+        }
+    ],
+    "features": [
+        {
+            "name": "Darkvision (Racial)",
+            "description": "Can see 60 ft in pitch darkness."
+        },
+        {
+            "name": "Feline Agility (Racial)",
+            "description": "When you move, you can double your movement speed until the end of your turn. You can’t regain this until you don’t move at all in a turn."
+        },
+        {
+            "name": "Cat's Claws (Racial)",
+            "description": "Your claws grant you 20 ft Climb Speed. You also gain slashing unarmed attacks that deal 1d4 + Strength."
+        },
+        {
+            "name": "Ear to the Ground (Rogue)",
+            "description": "You are in frequent contact with people in the segment of society that your chosen quarries move through."
+        },
+        {
+            "name": "Expertise (Rogue)",
+            "description": "Your proficiency bonus is doubled for any ability check you make that uses the chosen proficiencies."
+        },
+        {
+            "name": "Sneak Attack (Rogue)",
+            "description": "Once per turn, you can deal an extra 2d6 damage to one creature you hit with an attack if you have advantage on the attack roll."
+        },
+        {
+            "name": "Thieves' Cant (Rogue)",
+            "description": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation."
+        },
+        {
+            "name": "Cunning Action (Rogue)",
+            "description": "Your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action."
+        },
+        {
+            "name": "Steady Aim (Scout Rogue)",
+            "description": "At 3rd level, as a bonus action, you give yourself advantage on your next attack roll on the current turn. You can use this bonus action only if you haven't moved during this turn, and after you use the bonus action, your speed is 0 until the end of the current turn."
+        },
+        {
+            "name": "Skirmisher (Scout Rogue)",
+            "description": "Starting at 3rd level, you are difficult to pin down during a fight. You can move up to half your speed as a reaction when an enemy ends its turn within 5 feet of you. This movement doesn’t provoke opportunity attacks."
+        },
+        {
+            "name": "Survivalist (Scout Rogue)",
+            "description": "A 3rd level, you gain proficiency in the Nature and Survival skills if you don't already have it. Your proficiency bonus is doubled for any ability check you make that uses either of those proficiencies."
+        },
+        {
+            "name": "Mobile (Feat)",
+            "description": "You are exceptionally speedy and agile. You gain the following benefits:\nYour speed increases by 10 feet.\nWhen you use the Dash action, difficult terrain doesn't cost you extra movement on that turn.\nWhen you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not."
+        },
+        {
+            "name": "Robe of Many Useful Items Contents (item)",
+            "description": "Iron door, wooden ladder, rowboat & window"
+        }
+    ],
+    "proficiencies": {
+        "languages": [
+            "Common",
+            "Elvish",
+            "Thieves' Cant"
+        ],
+        "armor": [
+            "Light Armour"
+        ],
+        "weapons": [
+            "Simple Weapons",
+            "Hand Crossbows",
+            "Longswords",
+            "Rapiers",
+            "Shortswords"
+        ],
+        "tools": [
+            "Thieves' Tools",
+            "Playing Cards",
+            "Lute",
+            "Ropes"
+        ]
+    },
+    "notes": []
+}
