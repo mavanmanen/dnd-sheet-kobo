@@ -177,8 +177,7 @@ function setArmorClass(armor, shield) {
     $('#armor-class').find('.value').text(ac);
 }
 document.addEventListener('DOMContentLoaded', function (e) {
-    $('#test').text("".concat(document.body.scrollHeight, " | ").concat(document.body.scrollWidth));
-    var data = getJson('https://gist.githubusercontent.com/mavanmanen/90895bfc5e342785cc4111477492b5c7/raw/Veil%2520of%2520Shadows.json');
+    var data = getJson('!{sheetUrl}');
     setCharacterInfo(data.characterInfo);
     setAbilityScores(data.abilityScores);
     $('#inspiration .value').text(data.inspiration);

@@ -233,8 +233,7 @@ function setArmorClass(armor: string, shield: Boolean) {
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    $('#test').text(`${document.body.scrollHeight} | ${document.body.scrollWidth}`)
-    const data: Sheet = getJson('https://gist.githubusercontent.com/mavanmanen/90895bfc5e342785cc4111477492b5c7/raw/Veil%2520of%2520Shadows.json')
+    const data: Sheet = getJson('!{sheetUrl}')
 
     setCharacterInfo(data.characterInfo)
     setAbilityScores(data.abilityScores)

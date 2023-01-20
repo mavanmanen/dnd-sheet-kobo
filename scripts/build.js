@@ -2,6 +2,7 @@ const fs = require('fs')
 const pug = require('pug')
 const sass = require('sass')
 const cp = require("child_process")
+const sheets = require('./../sheets.json')
 
 const fromWatch = process.argv.length > 1 && process.argv[2] == 'watch'
 function removeDirIfExists(path) {
@@ -31,9 +32,10 @@ recreateDir('build/includes')
 console.log('Building TypeScript')
 cp.execSync('tsc -p src/tsconfig.json')
 fs.copyFileSync('src/includes/main.js', 'build/includes/main.js')
+fs.copyFileSync('src/includes/jquery.js', 'build/includes/jquery.js')
 
 console.log('Building SCSS')
-fs.writeFileSync('build/style.css', sass.compile('src/style.scss').css)
+fs.writeFileSync('build/includes/style.css', sass.compile('src/style.scss').css)
 
 console.log('Building Pug')
 for(const file of fs.readdirSync('src/includes')) {
@@ -41,7 +43,14 @@ for(const file of fs.readdirSync('src/includes')) {
         fs.copyFileSync(`src/includes/${file}`, `build/includes/${file}`)
     }
 }
+
 fs.copyFileSync('src/Index.pug', 'build/Index.pug')
-fs.writeFileSync('dist/Index.html', pug.renderFile('src/Index.pug', { pretty: true }))
+let compiledSheet = pug.renderFile('build/Index.pug')
+
+for(const sheetName in sheets) {
+    const path = sheets[sheetName]
+    compiledSheet = compiledSheet.replace('!{sheetUrl}', path)
+    fs.writeFileSync(`dist/DnD Sheet - ${sheetName}.html`, compiledSheet)
+}
 
 removeDirIfExists('build')

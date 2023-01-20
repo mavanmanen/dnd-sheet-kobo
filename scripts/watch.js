@@ -2,11 +2,12 @@ const fs = require('fs')
 const cp = require("child_process")
 
 const filesToWatch = [
+    'scripts/build.js',
     'src/main.ts',
     'src/style.scss',
     'src/index.pug',
     'src/includes/maps.pug',
-    'src/includes/mixins.pug'
+    'sheets.json'
 ]
 
 for(const file of filesToWatch) {
