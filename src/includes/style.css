@@ -31,8 +31,6 @@ body,
 .column {
   display: inline-block;
   vertical-align: top;
-  max-width: -webkit-min-content;
-  max-width: -moz-min-content;
   max-width: min-content;
 }
 .column > .cell {
@@ -56,8 +54,6 @@ body,
 
 .value-display {
   display: inline-block;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 .value-display .label,
@@ -76,13 +72,9 @@ body,
   display: inline-block;
 }
 .value-display.inline .label {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .value-display.inline .value {
-  width: -webkit-min-content;
-  width: -moz-min-content;
   width: min-content;
   float: right;
 }

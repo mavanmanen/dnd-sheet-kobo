@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "pug": "^3.0.2",
+    "sass": "^1.57.1"
+  },
+  "scripts": {
+    "build": " tsc -p src/tsconfig.json && node src/build.js"
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "liveServer.settings.root": "/dist",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/**",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.ts",
+        "**/*.json"
+    ],
+    "liveServer.settings.NoBrowser": true,
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".css",
+            "savePath": "/src/includes",
+            "savePathReplacementPairs": null
+        }
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "livePugCompiler.savePath": "./dist/",
+    "pug2html.compileOptions": {
+        "doctype": "html",
+        "pretty": true
+    }
+}

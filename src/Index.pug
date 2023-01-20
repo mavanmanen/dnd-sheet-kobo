@@ -1,0 +1,42 @@
+include includes/maps
+include includes/mixins
+
+html
+  head
+    style
+      include includes/style.css
+  body
+    .container
+      .row
+        .cell#character-info
+          each label, id in characterInfoFields
+            +value-display(id, label)
+
+      .row
+        .column#column-1
+          each label, id in abilityScores
+            +ability-score(id, label)
+
+        .column#column-2
+          +value-display('inspiration', 'Inspiration')(class='cell inline')
+
+          +value-display('proficiency-bonus', 'Proficiency Bonus')(class='cell inline')
+
+          .cell#saving-throws
+            each label, id in abilityScores
+              +saving-throw(id, label)
+            span.title= 'Saving Throws'
+
+          .cell#skills
+            each label, id in skills
+              +skill(id, label)
+            span.title= 'Skills'
+
+          +value-display('passive-wisdom', 'Passive Wisdom (Perception')(class='cell inline')
+
+          .cell#proficiencies
+            each label, id in proficiencies
+              +proficiency(id, label)
+
+    script
+      include includes/main.js

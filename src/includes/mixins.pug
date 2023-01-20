@@ -1,0 +1,28 @@
+mixin value-display(id, label)
+  .value-display(id=id, class!=attributes.class)
+    span.label= label
+    span.value= 'Placeholder'
+
+mixin ability-score(id, label)
+  .ability-score.cell(id='ability-score-' + id)
+    span.level= label
+    span.modifier= '0'
+    span.value= '0'
+
+mixin saving-throw(id, label)
+  .saving-throw.value-display.inline(id='saving-throw-' + id)
+    span.proficiency= '-'
+    span.label= label
+    span.value= '0'
+
+mixin skill(id, label)
+  .skill.value-display.inline(id='skill-' + id)
+    span.proficiency= '-'
+    span.expertise= '-'
+    span.label= label
+    span.value= '0'
+
+mixin proficiency(id, label)
+  div(id='proficiency-' + id)
+    span.label= label
+    ol
