@@ -1,8 +1,12 @@
 type AbilityScore = import('./models/ability-score').AbilityScore
 type CharacterInfo = import('./models/character-info').CharacterInfo
 type Proficiencies = import('./models/proficiencies').Proficiencies
+type Feature = import('./models/feature').Feature
 type Sheet = import('./models/sheet').Sheet
 type Skill = import('./models/skill').Skill
+type Attack = import('./models/attack').Attack
+type EquipmentItem = import('./models/equipment-item').Equipment
+type $ = typeof import('jquery')
 
 function getJson(url: string): Sheet {
     const xhr = new XMLHttpRequest()
@@ -11,47 +15,46 @@ function getJson(url: string): Sheet {
     return JSON.parse(xhr.response)
 }
 
-function setValue(valueContainerId: string, value: string) {
-    document.querySelector(`#${valueContainerId} .value`).innerHTML = value
-}
-
-function setCharacterInfo(characterInfo: CharacterInfo) {
-    setValue('player-name', characterInfo.playerName)
-    setValue('character-name', characterInfo.name)
-    setValue('class', characterInfo.class)
-    setValue('level', characterInfo.level)
-    setValue('race', characterInfo.race)
-    setValue('background', characterInfo.background)
-    setValue('alignment', characterInfo.alignment)
-    setValue('experience-points', characterInfo.experiencePoints)
-}
-
 function getAbilityModifier(score: number): number {
     return Math.floor((score - 10) / 2)
 }
 
-function setAbilityScore(abilityScore: AbilityScore) {
-    const el = document.getElementById(`ability-score-${abilityScore.name.toLowerCase()}`)
-    el.querySelector('.value').innerHTML = String(abilityScore.score)
-    el.querySelector('.modifier').innerHTML = String(getAbilityModifier(abilityScore.score))
+function formatAbilityModifier(score: number): string {
+    return score > 0 ? `+${score}` : String(score)
+}
+
+function toCheck(value: Boolean): string {
+    return value ? 'x' : '-'
+}
+
+function setCharacterInfo(characterInfo: CharacterInfo) {
+    $('#character-name').text(characterInfo.name)
+    $('#class').text(characterInfo.class)
+    $('#level').text(characterInfo.level)
+    $('#race').text(characterInfo.race)
+    $('#background').text(characterInfo.background)
+    $('#alignment').text(characterInfo.alignment)
+    $('#experience-points').text(characterInfo.experiencePoints)
 }
 
 function setAbilityScores(abilityScores: Array<AbilityScore>) {
-    abilityScores.forEach(setAbilityScore)
-}
-
-function setSavingThrow(abilityScore: AbilityScore, proficiencyBonus: number) {
-    const el = document.getElementById(`saving-throw-${abilityScore.name.toLowerCase()}`)
-    var score = getAbilityModifier(abilityScore.score)
-    if(abilityScore.proficiency) {
-        score += proficiencyBonus
+    for(const abilityScore of abilityScores) {
+        const el = $(`#ability-score-${abilityScore.name.toLowerCase()}`)
+        el.find('.modifier').text(formatAbilityModifier(getAbilityModifier(abilityScore.score)))
+        el.find('.score').text(abilityScore.score)
     }
-    el.querySelector('.value').innerHTML = String(score)
-    el.querySelector('.proficiency').innerHTML = abilityScore.proficiency ? 'x' : '-'
 }
 
 function setSavingThrows(abilityScores: Array<AbilityScore>, proficiencyBonus: number) {
-    abilityScores.forEach(as => setSavingThrow(as, proficiencyBonus))
+    for(const abilityScore of abilityScores) {
+        const el = $(`#saving-throw-${abilityScore.name.toLowerCase()}`)
+        let score = getAbilityModifier(abilityScore.score)
+        if(abilityScore.proficiency) {
+            score += proficiencyBonus
+        }
+        el.find('.proficiency').text(toCheck(abilityScore.proficiency))
+        el.find('.value').text(formatAbilityModifier(score))
+    }
 }
 
 function getAbilityForSkill(skillName: string, abilities: Array<AbilityScore>): AbilityScore {
@@ -88,23 +91,21 @@ function getAbilityForSkill(skillName: string, abilities: Array<AbilityScore>): 
     }
 }
 
-function setSkill(skill: Skill, proficiencyBonus: number, abilities: Array<AbilityScore>) {
-    const el = document.getElementById(`skill-${skill.name.toLowerCase().replace(/\s/g, '-')}`)
-    const abilityScore = getAbilityForSkill(skill.name, abilities)
-    var score = getAbilityModifier(abilityScore.score)
-    if(skill.proficiency) {
-        score += proficiencyBonus
-    }
-    if(skill.expertise) {
-        score += proficiencyBonus
-    }
-    el.querySelector('.value').innerHTML = String(score)
-    el.querySelector('.proficiency').innerHTML = skill.proficiency ? 'x' : '-'
-    el.querySelector('.expertise').innerHTML = skill.expertise ? 'x' : '-'
-}
-
 function setSkills(skills: Array<Skill>, proficiencyBonus: number, abilities: Array<AbilityScore>) { 
-    skills.forEach(skill => setSkill(skill, proficiencyBonus, abilities))
+    for(const skill of skills) {
+        const el = $(`#skill-${skill.name.toLowerCase().replace(/\s/g, '-')}`)
+        const ability = getAbilityForSkill(skill.name, abilities)
+        let score = getAbilityModifier(ability.score)
+        if(skill.proficiency) {
+            score += proficiencyBonus
+        }
+        if(skill.expertise) {
+            score += proficiencyBonus
+        }
+        el.find('.proficiency').text(toCheck(skill.proficiency))
+        el.find('.expertise').text(toCheck(skill.expertise))
+        el.find('.value').text(formatAbilityModifier(score))
+    }
 }
 
 function setPassiveWisdom(skills: Array<Skill>, proficiencyBonus: number, abilities: Array<AbilityScore>) {
@@ -117,16 +118,14 @@ function setPassiveWisdom(skills: Array<Skill>, proficiencyBonus: number, abilit
     if(perception.expertise) {
         score += proficiencyBonus
     }
-    setValue('passive-wisdom', String(score))
+    $('#passive-wisdom .value').text(formatAbilityModifier(score))
 }
 
 function populateList(selector: string, data: Array<string>) {
-    const el = document.querySelector(selector)
-    data.forEach(d => {
-        const ol = document.createElement('ol')
-        ol.innerText = d
-        el.appendChild(ol)
-    })
+    const el = $(selector)
+    for(const d of data) {
+        el.append($(`<li>${d}</li>`))
+    }
 }
 
 function setProficiencies(proficiencies: Proficiencies) {
@@ -136,17 +135,135 @@ function setProficiencies(proficiencies: Proficiencies) {
     populateList('#proficiency-tools ol', proficiencies.tools)
 }
 
+function setAttacks(attacks: Array<Attack>, abilities: Array<AbilityScore>) {
+    const el = $('#attacks .items')
+    const str = abilities.filter(el => el.name == 'Strength')[0]
+    const dex = abilities.filter(el => el.name == 'Dexterity')[0]
+
+
+    for(const attack of attacks) {
+        const score = attack.finesse ? dex : str
+        const mod = getAbilityModifier(score.score)
+
+        el.append($(`
+            <tr>
+                <td>${toCheck(attack.finesse)}</td>
+                <td class='left'>${attack.name}</td>
+                <td class='right'>${formatAbilityModifier(mod)}</td>
+                <td class='right'>${attack.damage}</td>
+                <td class='right'>${formatAbilityModifier(mod)}</td>
+            </tr>
+        `))
+    }
+}
+
+function setFeaturesAndTraits(data: Array<Feature>) {
+    const el = $('#features-traits .items')
+    for(const ft of data) {
+        el.append($(`
+            <tr>
+                <th class='left'>${ft.name}</th>
+            </tr>
+            <tr>
+                <td>${ft.description}</td>
+            </tr>
+        `))
+    }
+}
+
+function setEquipment(data: Array<EquipmentItem>) {
+    const el = $('#equipment')
+    for(const eq of data) {
+        el.append($(`
+            <tr>
+                <td>${eq.name}</td>
+                <td class='right'>${eq.amount}</td>
+            </tr>
+        `))
+    }
+}
+
+function setDeathSaves(successes: Array<Boolean>, failures: Array<Boolean>) {
+    const s = successes.filter(x => x).length
+    const f = failures.filter(x => x).length
+    $('#death-saves .value').text(`${s}/${f}`)
+}
+
+function setArmorClass(armor: string, shield: Boolean) {
+    let ac = shield ? 2 : 0
+    switch(armor.toLowerCase()) {
+        case 'padded':
+        case 'leather':
+            ac += 11;
+            break
+
+        case 'studded leather':
+        case 'hide':
+            ac += 12;
+            break
+        
+        case 'chainshirt':
+            ac += 13;
+            break
+        
+        case 'scalemail':
+        case 'breastplate':
+        case 'ringmail':
+            ac += 14;
+            break
+
+        case 'halfplate':
+            ac += 15
+            break
+        
+        case 'chainmail':
+            ac += 16
+            break
+        
+        case 'splint':
+            ac += 17
+            break
+
+        case 'plate':
+            ac += 18
+            break
+    }
+
+    $('#armor-class').find('.value').text(ac)
+}
+
 document.addEventListener('DOMContentLoaded', (e) => {
+    $('#test').text(`${document.body.scrollHeight} | ${document.body.scrollWidth}`)
     const data: Sheet = getJson('https://gist.githubusercontent.com/mavanmanen/90895bfc5e342785cc4111477492b5c7/raw/Veil%2520of%2520Shadows.json')
 
     setCharacterInfo(data.characterInfo)
     setAbilityScores(data.abilityScores)
-    setValue('inspiration', String(data.inspiration))
-    setValue('proficiency-bonus', String(data.proficiencyBonus))
+    $('#inspiration .value').text(data.inspiration)
+    $('#proficiency-bonus .value').text(data.proficiencyBonus)
     setSavingThrows(data.abilityScores, data.proficiencyBonus)
     setSkills(data.skills, data.proficiencyBonus, data.abilityScores)
     setPassiveWisdom(data.skills, data.proficiencyBonus, data.abilityScores)
     setProficiencies(data.proficiencies)
+    setAttacks(data.attacks, data.abilityScores)
+    const dex = data.abilityScores.filter(el => el.name == 'Dexterity')[0]
+    setArmorClass(data.armor, data.shield)
+    $('#initiative .value').text(getAbilityModifier(dex.score))
+    $('#speed .value').text(data.speed)
+    $('#max-hp .value').text(data.maximumHitpoints)
+    $('#cur-hp .value').text(data.currentHitpoints)
+    $('#temp-hp .value').text(data.temporaryHitpoints)
+    $('#max-hit-dice .value').text(data.hitDiceTotal)
+    $('#cur-hit-dice .value').text(data.hitDice)
+    setDeathSaves(data.deathSaveSuccesses, data.deathSaveFailures)
+    setEquipment(data.equipment)
+    $('#currency-copper .value').text(data.currency.copper)
+    $('#currency-silver .value').text(data.currency.silver)
+    $('#currency-electrum .value').text(data.currency.electrum)
+    $('#currency-gold .value').text(data.currency.gold)
+    $('#currency-platinum .value').text(data.currency.platinum)
+    $('#personality-traits .text').text(data.personalityTraits)
+    $('#ideals .text').text(data.ideals)
+    $('#bonds .text').text(data.bonds)
+    $('#flaws .text').text(data.flaws)
+    setFeaturesAndTraits(data.features)
 })
-
-setValue('player-name', 'test')

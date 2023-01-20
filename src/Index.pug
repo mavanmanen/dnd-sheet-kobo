@@ -1,42 +1,252 @@
 include includes/maps
-include includes/mixins
 
 html
   head
     style
       include includes/style.css
-  body
-    .container
-      .row
-        .cell#character-info
-          each label, id in characterInfoFields
-            +value-display(id, label)
+  body 
+    table#root.page
+      tr
+        td(colspan=3)
+          .wrapper
+            table.cell#character-info.auto
+              tr
+                each label, id in characterInfoFields
+                  th.left= label
+              tr
+                each label, id in characterInfoFields
+                  td(id=id).value= '{value}'
+      tr
+        td(colspan=3)
+          table#ability-scores
+            tr
+              each label, id in abilityScores
+                td
+                  .wrapper
+                    table.cell(id='ability-score-' + id)
+                      tr
+                        th= label
+                      tr
+                        td.modifier.center= 0
+                      tr
+                        td.score.center= 0
+      tr
+        td
+          table
+            tr
+              td
+                .wrapper
+                  table.cell#inspiration.auto
+                    tr
+                      th.left= 'Inspiration'
+                      td.value.right
+            tr
+              td
+                .wrapper
+                  table.cell#proficiency-bonus.auto
+                    tr
+                      th.left= 'Proficiency Bonus'
+                      td.value.right
+            tr
+              td
+                .wrapper
+                  table.cell#saving-throws.auto
+                    tr
+                      th= 'P'
+                      th
+                      th.right= 'Mod'
+                    each label, id in abilityScores
+                      tr(id='saving-throw-' + id).saving-throw
+                        th.proficiency= '-'
+                        td.label= label
+                        td.value.right= '0' 
+                    tr
+                      th(colspan=3)= 'Saving Throws'
+            tr
+              td
+                .wrapper
+                  table.cell#skills.auto
+                    tr
+                      th= 'P'
+                      th= 'E'
+                      th
+                      th.right= 'Mod'
+                      
+                    each label, id in skills
+                      tr(id='skill-' + id).skill
+                        th.proficiency= '-'
+                        th.expertise= '-'
+                        td.label= label
+                        td.right.value= '0' 
+                    tr
+                      th(colspan=3)= 'Skills'
+            tr
+              td
+                .wrapper
+                  table.cell#passive-wisdom.auto
+                    tr
+                      th.left= 'Passive Wisdom (Perception)'
+                      td.value.right
+            tr
+              td
+                .wrapper
+                  table.cell#proficiencies
+                    each label, id in proficiencies
+                      tr
+                        th.label.left= label
+                      tr(id='proficiency-' + id)
+                        td
+                          ol
+                    tr
+                      th= 'Proficiencies'
+        td
+          table
+            tr
+              td
+                table
+                  tr
+                    td
+                      .wrapper
+                        table.cell#armor-class.stat
+                          tr
+                            td(colspan).center.value
+                          tr
+                            th(colspan)= 'Armor Class'
+                    td
+                      .wrapper
+                        table.cell#initiative.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Initiative'
+                    td
+                      .wrapper
+                        table.cell#speed.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Speed'
+                  tr
+                    td
+                      .wrapper
+                        table.cell#max-hp.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Max HP'
+                    td
+                      .wrapper
+                        table.cell#cur-hp.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'HP'
+                    td
+                      .wrapper
+                        table.cell#temp-hp.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Temp HP'
+                  tr
+                    td
+                      .wrapper
+                        table.cell#max-hit-dice.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Max Hit Dice'
+                    td
+                      .wrapper
+                        table.cell#cur-hit-dice.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Hit Dice'
+                    td
+                      .wrapper
+                        table.cell#death-saves.stat
+                          tr
+                            td.center.value
+                          tr
+                            th= 'Death Saves'
+                  tr
+                    td(colspan=3)
+                      .wrapper
+                        table.cell#attacks
+                          tr
+                            td
+                              table.items.auto
+                                tr
+                                  th= 'F'
+                                  th.left= 'Name'
+                                  th.right= 'Mod'
+                                  th.right= 'Atk'
+                                  th.right= 'Mod'
+                          tr
+                            th= 'Attacks'
 
-      .row
-        .column#column-1
-          each label, id in abilityScores
-            +ability-score(id, label)
-
-        .column#column-2
-          +value-display('inspiration', 'Inspiration')(class='cell inline')
-
-          +value-display('proficiency-bonus', 'Proficiency Bonus')(class='cell inline')
-
-          .cell#saving-throws
-            each label, id in abilityScores
-              +saving-throw(id, label)
-            span.title= 'Saving Throws'
-
-          .cell#skills
-            each label, id in skills
-              +skill(id, label)
-            span.title= 'Skills'
-
-          +value-display('passive-wisdom', 'Passive Wisdom (Perception')(class='cell inline')
-
-          .cell#proficiencies
-            each label, id in proficiencies
-              +proficiency(id, label)
-
+                  tr
+                    td(colspan=3)
+                      .wrapper
+                        table.cell.auto
+                          tr
+                            td
+                              table#currencies.auto
+                                each label, id in currencies
+                                  tr(id='currency-' + id)
+                                    td.left= label
+                                    td.value.right
+                            td
+                              table#equipment.auto
+                                tr
+                                  th.left= 'Name'
+                                  th.right= 'Amount'
+                          tr
+                            th(colspan=2)= 'Equipment'
+        td
+          table
+            tr
+              td
+                .wrapper
+                  table.cell(id='personality-traits')
+                    tr
+                      td.text
+                    tr
+                      th.left= 'Personality Traits'
+            tr
+              td
+                .wrapper
+                  table.cell(id='ideals')
+                    tr
+                      td.text
+                    tr
+                      th= 'Ideals'
+            tr
+              td
+                .wrapper
+                  table.cell(id='bonds')
+                    tr
+                      td.text
+                    tr
+                      th= 'bonds'
+            tr
+              td
+                .wrapper
+                  table.cell(id='flaws')
+                    tr
+                      td.text
+                    tr
+                      th= 'Flaws'
+            tr
+              td
+                .wrapper
+                  table.cell(id='features-traits')
+                    tr
+                      td
+                        table.items
+                    tr
+                      th= 'Features & traits'
     script
+      include includes/jquery.js
       include includes/main.js
