@@ -6,7 +6,6 @@ const filesToWatch = [
     'src/main.ts',
     'src/style.scss',
     'src/index.pug',
-    'src/includes/maps.pug',
     'sheets.json'
 ]
 

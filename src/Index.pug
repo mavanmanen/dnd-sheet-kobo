@@ -1,4 +1,10 @@
 include includes/maps
+include includes/character-info
+include includes/ability-score
+include includes/table-cell
+include includes/saving-throws
+include includes/skills
+include includes/proficiencies
 
 html
   head
@@ -9,13 +15,7 @@ html
       tr
         td(colspan=3)
           .wrapper
-            table.cell#character-info.auto
-              tr
-                each label, id in characterInfoFields
-                  th.left= label
-              tr
-                each label, id in characterInfoFields
-                  td(id=id).value= '{value}'
+            +character-info()
       tr
         td(colspan=3)
           table#ability-scores
@@ -23,82 +23,34 @@ html
               each label, id in abilityScores
                 td
                   .wrapper
-                    table.cell(id='ability-score-' + id)
-                      tr
-                        th= label
-                      tr
-                        td.modifier.center= 0
-                      tr
-                        td.score.center= 0
+                    +ability-score(id, label)
       tr
         td
           table
             tr
               td
                 .wrapper
-                  table.cell#inspiration.auto
-                    tr
-                      th.left= 'Inspiration'
-                      td.value.right
+                  +table-cell('inspiration', 'Inspiration')
             tr
               td
                 .wrapper
-                  table.cell#proficiency-bonus.auto
-                    tr
-                      th.left= 'Proficiency Bonus'
-                      td.value.right
+                  +table-cell('proficiency-bonus', 'Proficiency Bonus')
             tr
               td
                 .wrapper
-                  table.cell#saving-throws.auto
-                    tr
-                      th= 'P'
-                      th
-                      th.right= 'Mod'
-                    each label, id in abilityScores
-                      tr(id='saving-throw-' + id).saving-throw
-                        th.proficiency= '-'
-                        td.label= label
-                        td.value.right= '0' 
-                    tr
-                      th(colspan=3)= 'Saving Throws'
+                  +saving-throws()
             tr
               td
                 .wrapper
-                  table.cell#skills.auto
-                    tr
-                      th= 'P'
-                      th= 'E'
-                      th
-                      th.right= 'Mod'
-                      
-                    each label, id in skills
-                      tr(id='skill-' + id).skill
-                        th.proficiency= '-'
-                        th.expertise= '-'
-                        td.label= label
-                        td.right.value= '0' 
-                    tr
-                      th(colspan=3)= 'Skills'
+                  +skills()
             tr
               td
                 .wrapper
-                  table.cell#passive-wisdom.auto
-                    tr
-                      th.left= 'Passive Wisdom (Perception)'
-                      td.value.right
+                  +table-cell('passive-wisdom', 'Passive Wisdom (Perception)')
             tr
               td
                 .wrapper
-                  table.cell#proficiencies
-                    each label, id in proficiencies
-                      tr
-                        th.label.left= label
-                      tr(id='proficiency-' + id)
-                        td
-                          ol
-                    tr
-                      th= 'Proficiencies'
+                  +proficiencies()
         td
           table
             tr

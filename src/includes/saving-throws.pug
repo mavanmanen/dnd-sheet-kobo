@@ -1,0 +1,15 @@
+include maps 
+
+mixin saving-throws()
+  table.cell#saving-throws.auto
+    tr
+      th= 'P'
+      th
+      th.right= 'Mod'
+    each label, id in abilityScores
+      tr(id='saving-throw-' + id).saving-throw
+        th.proficiency= '-'
+        td.label= label
+        td.value.right= '0' 
+    tr
+      th(colspan=3)= 'Saving Throws'

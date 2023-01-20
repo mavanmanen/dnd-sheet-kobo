@@ -1,0 +1,12 @@
+include maps
+
+mixin proficiencies()
+  table.cell#proficiencies
+    each label, id in proficiencies
+      tr
+        th.label.left= label
+      tr(id='proficiency-' + id)
+        td
+          ol
+    tr
+      th= 'Proficiencies'

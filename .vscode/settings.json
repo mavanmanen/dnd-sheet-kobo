@@ -17,10 +17,5 @@
             "savePathReplacementPairs": null
         }
     ],
-    "liveSassCompile.settings.generateMap": false,
-    "livePugCompiler.savePath": "./dist/",
-    "pug2html.compileOptions": {
-        "doctype": "html",
-        "pretty": true
-    }
+    "liveSassCompile.settings.generateMap": false
 }

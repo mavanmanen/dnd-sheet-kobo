@@ -1,0 +1,10 @@
+include maps
+
+mixin character-info()
+  table.cell#character-info.auto
+    tr
+      each label, id in characterInfoFields
+        th.left= label
+    tr
+      each label, id in characterInfoFields
+        td(id=id).value= '{value}'

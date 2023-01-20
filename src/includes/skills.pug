@@ -1,0 +1,18 @@
+include maps
+
+mixin skills()
+  table.cell#skills.auto
+    tr
+      th= 'P'
+      th= 'E'
+      th
+      th.right= 'Mod'
+      
+    each label, id in skills
+      tr(id='skill-' + id).skill
+        th.proficiency= '-'
+        th.expertise= '-'
+        td.label= label
+        td.right.value= '0' 
+    tr
+      th(colspan=3)= 'Skills'
