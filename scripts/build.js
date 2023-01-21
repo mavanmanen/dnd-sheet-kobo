@@ -19,7 +19,7 @@ try {
 
     console.log('Building TypeScript')
     cp.spawnSync('tsc', [
-        '-p', 'src/tsconfig.json',
+        '-p', 'tsconfig.json',
         '--outdir', includeDir
     ], {
         shell: true
