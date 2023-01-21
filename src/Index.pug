@@ -1,29 +1,49 @@
-include includes/maps
-include includes/character-info
-include includes/ability-score
-include includes/table-cell
-include includes/saving-throws
-include includes/skills
-include includes/proficiencies
+include includes/all
 
 html
   head
     style
       include includes/style.css
   body 
-    table#root.page
+    table
       tr
         td(colspan=3)
           .wrapper
             +character-info()
       tr
         td(colspan=3)
-          table#ability-scores
+          +ability-scores()
+      tr
+        td(colspan=3)
+          table
             tr
-              each label, id in abilityScores
-                td
-                  .wrapper
-                    +ability-score(id, label)
+              td
+                .wrapper
+                  +stat('armor-class', 'Armor Class')
+              td
+                .wrapper
+                  +stat('initiative', 'Initiative')
+              td
+                .wrapper
+                  +stat('speed', 'Speed')
+              td
+                .wrapper
+                  +stat('max-hp', 'Max HP')
+              td
+                .wrapper
+                  +stat('cur-hp', 'HP')
+              td
+                .wrapper
+                  +stat('temp-hp', 'Temp HP')
+              td
+                .wrapper
+                  +stat('max-hit-dice', 'Max Hit Dice')
+              td
+                .wrapper
+                  +stat('cur-hit-dice', 'Hit Dice')
+              td
+                .wrapper
+                  +stat('death-saves', 'death-saves')
       tr
         td
           table
@@ -54,151 +74,35 @@ html
         td
           table
             tr
-              td
-                table
-                  tr
-                    td
-                      .wrapper
-                        table.cell#armor-class.stat
-                          tr
-                            td(colspan).center.value
-                          tr
-                            th(colspan)= 'Armor Class'
-                    td
-                      .wrapper
-                        table.cell#initiative.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Initiative'
-                    td
-                      .wrapper
-                        table.cell#speed.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Speed'
-                  tr
-                    td
-                      .wrapper
-                        table.cell#max-hp.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Max HP'
-                    td
-                      .wrapper
-                        table.cell#cur-hp.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'HP'
-                    td
-                      .wrapper
-                        table.cell#temp-hp.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Temp HP'
-                  tr
-                    td
-                      .wrapper
-                        table.cell#max-hit-dice.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Max Hit Dice'
-                    td
-                      .wrapper
-                        table.cell#cur-hit-dice.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Hit Dice'
-                    td
-                      .wrapper
-                        table.cell#death-saves.stat
-                          tr
-                            td.center.value
-                          tr
-                            th= 'Death Saves'
-                  tr
-                    td(colspan=3)
-                      .wrapper
-                        table.cell#attacks
-                          tr
-                            td
-                              table.items.auto
-                                tr
-                                  th= 'F'
-                                  th.left= 'Name'
-                                  th.right= 'Mod'
-                                  th.right= 'Atk'
-                                  th.right= 'Mod'
-                          tr
-                            th= 'Attacks'
-
-                  tr
-                    td(colspan=3)
-                      .wrapper
-                        table.cell.auto
-                          tr
-                            td
-                              table#currencies.auto
-                                each label, id in currencies
-                                  tr(id='currency-' + id)
-                                    td.left= label
-                                    td.value.right
-                            td
-                              table#equipment.auto
-                                tr
-                                  th.left= 'Name'
-                                  th.right= 'Amount'
-                          tr
-                            th(colspan=2)= 'Equipment'
+              td(colspan=3)
+                .wrapper
+                  +attacks()
+            tr
+              td(colspan=3)
+                .wrapper
+                  +equipment()
         td
           table
             tr
               td
                 .wrapper
-                  table.cell(id='personality-traits')
-                    tr
-                      td.text
-                    tr
-                      th.left= 'Personality Traits'
+                  +personality-item('personality-traits', 'Personality Traits')
             tr
               td
                 .wrapper
-                  table.cell(id='ideals')
-                    tr
-                      td.text
-                    tr
-                      th= 'Ideals'
+                  +personality-item('ideals', 'Ideals')
             tr
               td
                 .wrapper
-                  table.cell(id='bonds')
-                    tr
-                      td.text
-                    tr
-                      th= 'bonds'
+                  +personality-item('bonds', 'Bonds')
             tr
               td
                 .wrapper
-                  table.cell(id='flaws')
-                    tr
-                      td.text
-                    tr
-                      th= 'Flaws'
+                  +personality-item('flaws', 'Flaws')
             tr
               td
                 .wrapper
-                  table.cell(id='features-traits')
-                    tr
-                      td
-                        table.items
-                    tr
-                      th= 'Features & traits'
+                  +features-traits()
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js')
     script
-      include includes/jquery.js
       include includes/main.js

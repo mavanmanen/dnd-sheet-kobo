@@ -1,7 +1,7 @@
 include maps
 
 mixin character-info()
-  table.cell#character-info.auto
+  table.cell#character-info
     tr
       each label, id in characterInfoFields
         th.left= label

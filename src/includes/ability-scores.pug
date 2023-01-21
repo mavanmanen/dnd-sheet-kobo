@@ -1,0 +1,15 @@
+include maps
+
+mixin ability-scores()
+  table#ability-scores
+    tr
+      each label, id in abilityScores
+        td
+          .wrapper
+            table.cell(id='ability-score-' + id)
+              tr
+                th= label
+              tr
+                td.modifier.center= 0
+              tr
+                td.score.center= 0

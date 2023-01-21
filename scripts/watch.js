@@ -1,5 +1,6 @@
 const fs = require('fs')
-const cp = require("child_process")
+const cp = require('child_process')
+const path = require('path')
 
 const filesToWatch = [
     'scripts/build.js',
@@ -9,9 +10,14 @@ const filesToWatch = [
     'sheets.json'
 ]
 
+const includes = 'src/includes'
+for(const file of fs.readdirSync(includes)) {
+    filesToWatch.push(path.join(includes, file))
+}
+
 for(const file of filesToWatch) {
     fs.watchFile(file, { persistent: true, interval: 1000 }, (cur, prev) => {
-        console.log(`'${file}' changed`)
-        cp.fork('scripts/build.js', ['watch'])
+        console.log('%s changed', file)
+        cp.fork('scripts/build.js')
     })
 }

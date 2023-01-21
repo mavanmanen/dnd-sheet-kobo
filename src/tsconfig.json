@@ -3,7 +3,6 @@
     "compilerOptions": {
         "target": "ES3",
         "sourceMap": false,
-        "outDir": "includes",
         "removeComments": true,
         "strict": false,
         "module": "none"

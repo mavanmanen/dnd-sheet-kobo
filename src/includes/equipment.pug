@@ -1,0 +1,17 @@
+include maps
+mixin equipment()
+  table.cell.auto
+    tr
+      td
+        table#currencies.auto
+          each label, id in currencies
+            tr(id='currency-' + id)
+              td.left= label
+              td.value.right
+      td
+        table#equipment.auto
+          tr
+            th.left= 'Name'
+            th.right= 'Amount'
+    tr
+      th(colspan=2)= 'Equipment'

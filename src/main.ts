@@ -229,7 +229,7 @@ function setArmorClass(armor: string, shield: Boolean) {
             break
     }
 
-    $('#armor-class').find('.value').text(ac)
+    $('#armor-class .value').text(ac)
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {

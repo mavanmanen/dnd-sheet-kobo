@@ -1,25 +1,19 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap";
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-family: 'roboto';
   margin: 0;
   padding: 0;
-  width: 100vw;
-  max-width: 100vw;
-  max-height: 100vh;
-}
-
-.page {
-  max-width: 1517px;
-  max-height: 1975px;
-}
-
-#root {
   max-width: 100vw;
 }
 
 .wrapper {
+  margin: .25rem;
   margin: .25rem;
 
   > * {
@@ -34,10 +28,10 @@ table {
   width: 100%;
 
   &.auto {
-    table-layout: auto !important;
+    table-layout: auto;
 
     td, th {
-      width: auto !important;
+      width: auto;
       padding-right: .5rem;
     }
   }
@@ -97,11 +91,5 @@ ol {
     th {
       padding-top: .5rem;
     }
-  }
-}
-
-#armor-class {
-  .name {
-    font-size: .8rem;
   }
 }
